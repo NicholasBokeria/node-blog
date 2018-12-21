@@ -1,23 +1,22 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
+/* eslint-disable */
+const { Post } = require('./models/post')
+/* eslint-enable */
 
 const app = express()
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.set('view engine', 'ejs')
 
-const arr = ['Hello', 'World', 'Test']
 
-app.get('/', (req, res) => res.render('index', {
-    arr
-}))
-
-app.get('/create', (req, res) => res.render('create'))
-app.post('/create', (req, res) => {
-    arr.push(req.body.text)
-    res.redirect('/')
+app.get('/', (req, res) => {
+    res.render('index')
 })
+
 
 module.exports = { app }
