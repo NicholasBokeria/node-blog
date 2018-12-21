@@ -16,7 +16,8 @@
   "devDependencies": {
     "eslint": "^5.10.0",
     "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-prettier": "^3.0.0"
+    "eslint-plugin-prettier": "^3.0.0",
+    "nodemon": "^1.18.9"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -24,6 +25,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
-    "mongoose": "^5.4.0"
+    "mongoose": "^5.4.0",
+    "static-asset": "^0.6.0"
   }
 }

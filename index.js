@@ -1,6 +1,6 @@
 /*eslint-disable */
 const { app } = require('./app')
-const db = require('./db') 
+const database = require('./database') 
 const { PORT } = require('./config')
 /*eslint-enable */
 
