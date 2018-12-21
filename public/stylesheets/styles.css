@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex-grow: 0
+}
+
+.main {
+    flex-grow: 1
+}
+
+.footer {
+    flex-grow: 0
+}

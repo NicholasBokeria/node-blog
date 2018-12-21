@@ -3,7 +3,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const staticAsset = require('static-asset')
-const config = require('./config')
 /* eslint-enable */
 
 const app = express()
@@ -19,7 +18,9 @@ app.set('view engine', 'ejs')
 
 //Routes
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', {
+        title: "Nicholas Blog"
+    })
 })
 
 //catch 404
@@ -35,7 +36,6 @@ app.use((error, req, res, next) => {
     res.status(error.status || 500)
     res.render('error', {
         message: error.message,
-        error: !config.IS_PRODUCTION ? error : {}, 
         title: 'Oopps..'
     })
 })

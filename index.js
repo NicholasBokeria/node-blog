@@ -1,9 +1,10 @@
 /*eslint-disable */
-const { app } = require('./app')
-const database = require('./database') 
-const { PORT } = require('./config')
+require('./server/config/config')
+
+const mongoose = require('./server/db/mongoose') 
+const { app } = require('./server/app')
 /*eslint-enable */
 
-app.listen(PORT, () => {
-    console.log(`Server started ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Server started ${process.env.PORT}`)
 })
