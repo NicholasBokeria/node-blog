@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const staticAsset = require('static-asset')
+const routes = require('../routes')
 /* eslint-enable */
 
 const app = express()
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
         date : new Date().getFullYear()
     })
 })
+
+app.use('/api/auth', routes.auth)
 
 //catch 404
 app.use((req, res, next) => {

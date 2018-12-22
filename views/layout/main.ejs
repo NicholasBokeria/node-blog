@@ -30,14 +30,16 @@
     </div>
 
     <div class="sidebar">
-        <form method="post" action="/api/registration">
+        <form method="post">
             <h3>Register</h3>
             <label for="email">E-mail</label>
             <input type="text" name="email">
             <label for="password">Password</label>
-            <input type="text" name="password">
+            <input type="password" name="password">
+            <label for="password">Repeat Password</label>
+            <input type="password" name="repeat-password">
 
-            <button>Ok!</button>
+            <button id="register">Register</button>
         </form>
     </div>
 </div>
