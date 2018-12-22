@@ -30,8 +30,11 @@
     </div>
 
     <div class="sidebar">
-        <form method="post">
-            <h3>Register</h3>
+        <div class="switch-forms">
+            <h3 class="signup-switch">Sign up</h3>
+            <h3 class="signin-switch">Sign in</h3>
+        </div>
+        <form method="post" class="signup">
             <label for="email">E-mail</label>
             <input type="text" name="email">
             <label for="password">Password</label>
@@ -39,7 +42,16 @@
             <label for="password">Repeat Password</label>
             <input type="password" name="repeat-password">
 
-            <button id="register">Register</button>
+            <button id="register">Sign up</button>
+        </form>
+
+        <form class="signin">
+            <label for="email">E-mail</label>
+            <input type="text" name="email">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+
+            <button id="signin">Sign in</button>
         </form>
     </div>
 </div>

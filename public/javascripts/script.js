@@ -1,5 +1,22 @@
 /* eslint-disable */
-jQuery('#register').on('click', (event) => {
+jQuery('.switch-forms').on('click', event => {
+    if(event.target.classList.value == 'signup-switch') {
+        jQuery('.signup').show(200)
+        jQuery('.signin').hide(200)
+
+        jQuery('.signup-switch').css('text-decoration', 'underline')
+        jQuery('.signin-switch').css('text-decoration', 'none')
+    } 
+    if(event.target.classList.value == 'signin-switch') {
+        jQuery('.signup').hide(200)
+        jQuery('.signin').show(200)
+
+        jQuery('.signin-switch').css('text-decoration', 'underline')
+        jQuery('.signup-switch').css('text-decoration', 'none')
+    }
+})
+
+jQuery('#register').on('click', event => {
     event.preventDefault()
 
     let email = jQuery("input[name='email']").val()

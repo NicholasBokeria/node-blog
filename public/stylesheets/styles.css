@@ -53,6 +53,19 @@ header {
     padding: 15px;
 }
 
+/* signup/signin */
+.switch-forms {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+} .switch-forms > * {
+    cursor: pointer;
+}
+
+.signin {
+    display: none
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -70,6 +83,11 @@ form {
     text-align: center;
 } form > button {
     margin-top: 20px;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    font-size: 18px;
+    border-radius: 2px;
 }
 
 /* footer */

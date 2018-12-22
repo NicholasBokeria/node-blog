@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
     } else if (!validator.validate(email)) {
         res.json({
             ok: false,
-            error: 'Emails is not valid!'
+            error: 'Email is not valid!'
         })
     } else {
         bcrypt.hash(password, null, null, (err, hash) => {
