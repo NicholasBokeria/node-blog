@@ -7,8 +7,8 @@ const staticAsset = require('static-asset')
 
 const app = express()
 
-app.use(staticAsset(path.join(__dirname, 'public')))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(staticAsset(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 
 app.use(bodyParser.json())
@@ -19,7 +19,7 @@ app.set('view engine', 'ejs')
 //Routes
 app.get('/', (req, res) => {
     res.render('index', {
-        title: "Nicholas Blog"
+        date : new Date().getFullYear()
     })
 })
 
