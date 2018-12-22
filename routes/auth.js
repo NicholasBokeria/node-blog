@@ -4,6 +4,7 @@ const { User } = require('../server/models/user')
 const bcrypt = require('bcrypt-nodejs')
 const validator = require("email-validator");
 
+//Router registration
 router.post('/register', (req, res) => {
     const email = req.body.email
     const password = req.body.password
@@ -42,6 +43,36 @@ router.post('/register', (req, res) => {
                 .catch(error => console.log(error))
         })
     }
+})
+//Router authorisation
+router.post('/login', (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    User.findOne({ email })
+        .then(user => {
+            if (!user) {
+                res.json({
+                    ok: false,
+                    error: 'Email or password is incorrect'
+                })
+            } else {
+                bcrypt.compare(password, user.password, (err, res) => {
+                    if (err) throw new Error('Try again later...')
+
+                    if (!res) {
+                        res.json({
+                            ok: false,
+                            error: 'Email or password is incorrect'
+                        })
+                    } else {
+                        //
+                    }
+                })
+            }
+        })
+        .catch(error => console.log(error))
+
 })
 
 module.exports = router

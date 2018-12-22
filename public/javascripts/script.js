@@ -1,4 +1,5 @@
 /* eslint-disable */
+//Switch forms
 jQuery('.switch-forms').on('click', event => {
     if(event.target.classList.value == 'signup-switch') {
         jQuery('.signup').show(200)
@@ -16,6 +17,7 @@ jQuery('.switch-forms').on('click', event => {
     }
 })
 
+//register
 jQuery('#register').on('click', event => {
     event.preventDefault()
 
@@ -25,12 +27,28 @@ jQuery('#register').on('click', event => {
 
     let data = { email, password, repeatPassword }
     
+    ajaxCall('/api/auth/register', data)
+})
+
+//authorisation
+jQuery('#authorisation').on('click', event => {
+    event.preventDefault()
+
+    let email = jQuery("input[name='auth-email']").val()
+    let password = jQuery("input[name='auth-password']").val()
+
+    let data = { email, password }
+
+    ajaxCall('/api/auth/login', data)
+})
+
+let ajaxCall = (url, data) => {
     jQuery.ajax({
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: '/api/auth/register'
+        url
     }).done(data => {
         console.log(data)
-    })
-})
+    }) 
+}
