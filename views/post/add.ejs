@@ -1,0 +1,17 @@
+<% include ../layout/header.ejs %>
+<div class="add-post">
+    <div class="add-post-form_wrapper">
+        <h2>Create Post</h2>
+
+        <form method="post">
+            <label for="post-title">Title</label>
+            <input type="text" name="post-title">
+
+            <label for="post-body">Write something amazing</label>
+            <textarea name="post-body" rows="15"></textarea>
+
+            <button id="post">Post!</button>
+        </form>
+    </div>
+</div>
+<% include ../layout/footer.ejs %>

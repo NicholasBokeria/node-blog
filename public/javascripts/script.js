@@ -43,6 +43,17 @@ jQuery('#authorisation').on('click', event => {
     ajaxCall('/api/auth/login', data)
 })
 
+jQuery('#post').on('click', event => {
+    event.preventDefault()
+
+    let title = jQuery("input[name='post-title']").val()
+    let postBody = jQuery("textarea[name='post-body']").val()
+
+    let data = { title, postBody }
+
+    ajaxCall('/post/add', data)
+})
+
 let ajaxCall = (url, data) => {
     jQuery.ajax({
         type: 'POST',

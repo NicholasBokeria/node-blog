@@ -101,6 +101,16 @@ footer {
     margin-left: 2em;
 }
 
+/*add posts*/
+.add-post {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} .add-post-form_wrapper {
+    width: 50%;
+    
+}
 
 /* additional styles */
 
