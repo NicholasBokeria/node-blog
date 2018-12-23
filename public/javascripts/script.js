@@ -1,14 +1,14 @@
 /* eslint-disable */
 //Switch forms
 jQuery('.switch-forms').on('click', event => {
-    if(event.target.classList.value == 'signup-switch') {
+    if (event.target.classList.value == 'signup-switch') {
         jQuery('.signup').show(200)
         jQuery('.signin').hide(200)
 
         jQuery('.signup-switch').css('text-decoration', 'underline')
         jQuery('.signin-switch').css('text-decoration', 'none')
-    } 
-    if(event.target.classList.value == 'signin-switch') {
+    }
+    if (event.target.classList.value == 'signin-switch') {
         jQuery('.signup').hide(200)
         jQuery('.signin').show(200)
 
@@ -22,11 +22,12 @@ jQuery('#register').on('click', event => {
     event.preventDefault()
 
     let email = jQuery("input[name='email']").val()
+    let login = jQuery("input[name='login']").val()
     let password = jQuery("input[name='password']").val()
     let repeatPassword = jQuery("input[name='repeat-password']").val()
 
-    let data = { email, password, repeatPassword }
-    
+    let data = { email, login, password, repeatPassword }
+
     ajaxCall('/api/auth/register', data)
 })
 
@@ -49,6 +50,6 @@ let ajaxCall = (url, data) => {
         contentType: 'application/json',
         url
     }).done(data => {
-        console.log(data)
-    }) 
+        location.reload()
+    })
 }

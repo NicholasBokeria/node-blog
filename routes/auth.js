@@ -7,10 +7,11 @@ const validator = require("email-validator");
 //Router registration
 router.post('/register', (req, res) => {
     const email = req.body.email
+    const login = req.body.login
     const password = req.body.password
     const repeatPassword = req.body.repeatPassword
 
-    if (!email || !password || !repeatPassword) {
+    if (!email || !password || !repeatPassword || !login) {
         res.json({
             ok: false,
             error: 'Check fields'
@@ -25,6 +26,11 @@ router.post('/register', (req, res) => {
             ok: false,
             error: 'Email is not valid!'
         })
+    } else if (login.length < 3) {
+        res.json({
+            ok: false,
+            error: 'Login is to short'
+        })
     } else {
         bcrypt.hash(password, null, null, (err, hash) => {
             if (err) {
@@ -32,10 +38,14 @@ router.post('/register', (req, res) => {
             }
             let user = new User({
                 email,
+                login,
                 password: hash
             })
             user.save()
                 .then(() => {
+                    req.session.userId = user.id
+                    req.session.userLogin = user.login
+
                     res.json({
                         ok: true
                     })
@@ -48,7 +58,6 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const email = req.body.email
     const password = req.body.password
-
     User.findOne({ email })
         .then(user => {
             if (!user) {
@@ -57,22 +66,36 @@ router.post('/login', (req, res) => {
                     error: 'Email or password is incorrect'
                 })
             } else {
-                bcrypt.compare(password, user.password, (err, res) => {
+                bcrypt.compare(password, user.password, (err, response) => {
                     if (err) throw new Error('Try again later...')
 
-                    if (!res) {
+                    if (!response) {
                         res.json({
                             ok: false,
                             error: 'Email or password is incorrect'
                         })
                     } else {
-                        //
+                        req.session.userId = user.id
+                        req.session.userLogin = user.login
+
+                        res.json({
+                            ok: true
+                        });
                     }
                 })
             }
         })
         .catch(error => console.log(error))
+})
 
+router.get('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(() => {
+            res.redirect('/')
+        })
+    } else {
+        res.redirect('/')
+    }
 })
 
 module.exports = router

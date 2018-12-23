@@ -4,22 +4,22 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const staticAsset = require('static-asset')
 const routes = require('../routes')
+const { mongoose } = require('./db/mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 /* eslint-enable */
 
 const app = express()
 
-/* TO ADD - config sessionsecret, mongoose in app.js
 app.use(session({
-    secret: config.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resolve: true,
     saveUninitialized: false,
     store: new MongoStore({
         mongooseConnection: mongoose.connection
     })
 }))
-*/
+
 app.use(staticAsset(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../public')))
 
@@ -31,8 +31,14 @@ app.set('view engine', 'ejs')
 
 //Routes
 app.get('/', (req, res) => {
+    //take data from session
+    const id = req.session.userId
+    const login = req.session.userLogin
+
     res.render('index', {
-        date : new Date().getFullYear()
+        user: {
+            id, login
+        }
     })
 })
 
