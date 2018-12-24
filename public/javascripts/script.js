@@ -61,6 +61,6 @@ let ajaxCall = (url, data) => {
         contentType: 'application/json',
         url
     }).done(data => {
-        location.reload()
+        location.href = '/'
     })
 }
