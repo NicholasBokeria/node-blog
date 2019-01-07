@@ -12,7 +12,7 @@ const PostSchema = new mongoose.Schema({
     },
     owner: {
         type: mongoose.Schema.ObjectId,
-        ref: 'UserSchema'
+        ref: 'User'
     }
 })
 
