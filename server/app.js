@@ -29,21 +29,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.set('view engine', 'ejs')
 
+
 //Routes
-app.get('/', (req, res) => {
-    //take data from session
-    const id = req.session.userId
-    const login = req.session.userLogin
-
-    res.render('index', {
-        user: {
-            id, login
-        }
-    })
-})
-
+app.use('/', routes.archive)
 app.use('/api/auth', routes.auth)
 app.use('/post', routes.post)
+
 
 //catch 404
 app.use((req, res, next) => {

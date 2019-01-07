@@ -1,11 +1,37 @@
 <div class="main">
     <div class="articles">
+        <% for (let i = 0; i < posts.length; i++) { %>
         <article>
-            <h3>Nodejs is Great!</h3>
+            <h3>
+                <%= posts[i].title %>
+            </h3>
 
-            <p>Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code
-                outside of a browser</p>
+            <p>
+                <%= posts[i].body %>
+            </p>
+
+            <div class="info">
+                <p>
+                    <%= user[i] %>
+                </p>
+            </div>
         </article>
+        <% } %>
+
+        <div class="pagination">
+            <% if (pages > 0 && current < pages) { %>
+            <a href="/archive/<%= Number(current) +1 %>">Older</a>
+            <% } %>
+
+            <% if (pages > 2) { %>
+            <a href="/archive/<%= Number(current) -1 %>">Newest</a>
+            <% } %>
+
+            <% if (pages == 2) { %>
+            <a href="/">To main</a>
+            <% } %>
+        </div>
+
     </div>
 
     <div class="sidebar">
@@ -37,7 +63,9 @@
         </form>
         <% } else { %>
         <div class="user">
-            <p> <%= user.login %> </p>
+            <p>
+                <%= user.login %>
+            </p>
             <a href="/api/auth/logout">Log out</a>
         </div>
         <% } %>
